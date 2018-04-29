@@ -1,0 +1,50 @@
+<html> 
+    <head> 
+        
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="./CSS/style.css">  
+        
+        <title>Reloj con Javascript</title> 
+        
+        <script language="JavaScript"> 
+
+            function mueveReloj(){ 
+                momentoActual = new Date() 
+                hora = momentoActual.getHours() 
+                minuto = momentoActual.getMinutes() 
+                segundo = momentoActual.getSeconds() 
+
+                str_segundo = new String (segundo) 
+                if (str_segundo.length == 1) 
+                    segundo = "0" + segundo 
+
+                str_minuto = new String (minuto) 
+                if (str_minuto.length == 1) 
+                    minuto = "0" + minuto 
+
+                str_hora = new String (hora) 
+                if (str_hora.length == 1) 
+                    hora = "0" + hora 
+
+                horaImprimible = hora + " : " + minuto + " : " + segundo 
+                document.getElementById('relojico').innerHTML = horaImprimible
+                document.form_reloj.reloj.value = horaImprimible
+                setTimeout("mueveReloj()",1000) 
+            } 
+        </script> 
+    </head> 
+
+    <body class="back" onload="mueveReloj()"> 
+
+        <p id="p1">Hola Cybernauta!</p>
+        <button type="button"
+        onclick="document.getElementById('relojico').innerHTML = document.getElementById('relojico').innerHTML + '-'">
+        Pulsame!</button>
+
+        <form name="form_reloj"> 
+            <a id="relojico">Choricico de pamplona</a>
+            <input type="text" name="reloj" class="clock" > 
+        </form> 
+
+    </body> 
+</html>
