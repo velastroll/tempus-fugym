@@ -1,12 +1,51 @@
 <html> 
     <head> 
         
+        <!-- Codificacion -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <!-- CSS -->
-        <link rel="stylesheet" type="text/css" href="./CSS/style.css">  
+        <link rel="stylesheet" type="text/css" href="./style.css">  
         
-        <title>Reloj con Javascript</title> 
+        <title>Tempus Fugym </title> 
         
         <script language="JavaScript"> 
+
+            function cuentaAtras(){
+                segundil = parseInt(document.getElementById('relojico').innerHTML)
+                document.body.style.backgroundColor = 'green';
+                document.getElementById('p1').innerHTML = '¡Dale caña!';
+                if (segundil == 0){
+                    document.body.style.backgroundColor = 'red'; 
+                    document.getElementById('p1').innerHTML = '¡SE ACABÓ!';
+                    document.getElementById('relojico').innerHTML = 6;
+                    setTimeout("pausa()", 1000);
+
+                } else {
+                    segundil = segundil - 1;
+                    document.getElementById('relojico').innerHTML = segundil;
+                    setTimeout("cuentaAtras()", 1000);
+                }
+            }
+
+            function pausa(){
+                segundicos = parseInt(document.getElementById('relojico').innerHTML)
+                if (0 == segundicos){
+                    document.getElementById('relojico').innerHTML = ':D';
+                    document.getElementById('p1').innerHTML = 'Descansa';
+                    document.body.style.backgroundColor = 'white'; 
+                    
+                } else if (0 == segundicos%2) {
+                    document.body.style.backgroundColor = 'white'; 
+                    document.getElementById('relojico').innerHTML = segundicos - 1;
+                    setTimeout("pausa()", 1000);
+                } else {
+                    document.body.style.backgroundColor = 'red'; 
+                    document.getElementById('relojico').innerHTML = segundicos - 1;
+                    setTimeout("pausa()", 1000);
+                }
+
+            }
+
 
             function mueveReloj(){ 
                 momentoActual = new Date() 
@@ -28,23 +67,14 @@
 
                 horaImprimible = hora + " : " + minuto + " : " + segundo 
                 document.getElementById('relojico').innerHTML = horaImprimible
-                document.form_reloj.reloj.value = horaImprimible
                 setTimeout("mueveReloj()",1000) 
             } 
         </script> 
     </head> 
 
-    <body class="back" onload="mueveReloj()"> 
-
+    <body class="back clock" > 
+        <p id="relojico">3</p>
         <p id="p1">Hola Cybernauta!</p>
-        <button type="button"
-        onclick="document.getElementById('relojico').innerHTML = document.getElementById('relojico').innerHTML + '-'">
-        Pulsame!</button>
-
-        <form name="form_reloj"> 
-            <a id="relojico">Choricico de pamplona</a>
-            <input type="text" name="reloj" class="clock" > 
-        </form> 
-
+        <button type="button" onclick="cuentaAtras()"> Pulsame! </button>
     </body> 
 </html>

@@ -1,9 +1,9 @@
 .clock{
-    font-size: 8em;
+    font-size: 12em;
     color: black;
     text-align: center;
 }
 .back{
-    background-color: aliceblue;
+    background-color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
