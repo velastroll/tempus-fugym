@@ -11,13 +11,15 @@
         <script language="JavaScript"> 
 
             function cuentaAtras(){
-                segundil = parseInt(document.getElementById('relojico').innerHTML)
+                var a = parseInt(document.getElementById('relojico').innerHTML)
+                if (isNaN(a)) segundil = 5;
+                else segundil = a;
                 document.body.style.backgroundColor = 'green';
                 document.getElementById('p1').innerHTML = '¡Dale caña!';
                 if (segundil == 0){
                     document.body.style.backgroundColor = 'red'; 
                     document.getElementById('p1').innerHTML = '¡SE ACABÓ!';
-                    document.getElementById('relojico').innerHTML = 6;
+                    document.getElementById('relojico').innerHTML = 'Cambiate, loco';
                     setTimeout("pausa()", 1000);
 
                 } else {
@@ -29,7 +31,10 @@
 
             function pausa(){
                 segundicos = parseInt(document.getElementById('relojico').innerHTML)
-                if (0 == segundicos){
+                if (isNaN(segundicos)) {
+                    document.getElementById('relojico').innerHTML = 100;
+                    pausa();
+                } else if (0 == segundicos){
                     document.getElementById('relojico').innerHTML = ':D';
                     document.getElementById('p1').innerHTML = 'Descansa';
                     document.body.style.backgroundColor = 'white'; 
@@ -37,13 +42,12 @@
                 } else if (0 == segundicos%2) {
                     document.body.style.backgroundColor = 'white'; 
                     document.getElementById('relojico').innerHTML = segundicos - 1;
-                    setTimeout("pausa()", 1000);
+                    setTimeout("pausa()", 10);
                 } else {
                     document.body.style.backgroundColor = 'red'; 
                     document.getElementById('relojico').innerHTML = segundicos - 1;
-                    setTimeout("pausa()", 1000);
+                    setTimeout("pausa()", 10);
                 }
-
             }
 
 
@@ -73,8 +77,8 @@
     </head> 
 
     <body class="back clock" > 
-        <p id="relojico">3</p>
-        <p id="p1">Hola Cybernauta!</p>
+        <p id="relojico"></p>
+        <p id="p1">Hola Gymbernauta!</p>
         <button type="button" onclick="cuentaAtras()"> Pulsame! </button>
     </body> 
 </html>
